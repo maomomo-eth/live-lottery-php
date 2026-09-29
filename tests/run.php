@@ -53,6 +53,11 @@ try {
     assertTrue($onekeyCount === 1, 'OneKey 钱包必须恰好抽出 1 个');
     assertTrue($hatCount === 2, 'Q总赞助帽子必须恰好抽出 2 个');
     assertTrue($noneCount === 9, '未中奖结果必须恰好 9 个');
+    foreach ($results as $result) {
+        if ($result['prize_type'] === 'okx_hat') {
+            assertTrue($result['prize_title'] === 'Q总赞助帽子', '帽子奖品必须使用最新名称');
+        }
+    }
 
     $finished = getEvent($event['id']);
     assertTrue($finished['status'] === 'finished', '名额抽完后场次应自动结束');

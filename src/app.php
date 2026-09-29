@@ -237,6 +237,16 @@ function buildPrizePool(int $total): array
     return $pool;
 }
 
+function canonicalPrizeTitle(string $type, string $fallback = ''): string
+{
+    return match ($type) {
+        'onekey' => 'OneKey 钱包',
+        'okx_hat' => 'Q总赞助帽子',
+        'none' => '谢谢参与',
+        default => $fallback !== '' ? $fallback : '未知奖品',
+    };
+}
+
 /** @return array<string, mixed> */
 function createEvent(int $total): array
 {
@@ -395,12 +405,13 @@ function drawPrize(string $eventId, string $participantToken, string $rawName): 
         $prize = $pool[$index];
         array_splice($pool, $index, 1);
 
+        $prizeType = (string) ($prize['type'] ?? 'none');
         $draw = [
             'draw_no' => count($draws) + 1,
             'participant_hash' => $tokenHash,
             'name' => $name,
-            'prize_type' => (string) ($prize['type'] ?? 'none'),
-            'prize_title' => (string) ($prize['title'] ?? '谢谢参与'),
+            'prize_type' => $prizeType,
+            'prize_title' => canonicalPrizeTitle($prizeType, (string) ($prize['title'] ?? '')),
             'drawn_at' => nowIso(),
             'repeated' => false,
         ];
@@ -437,7 +448,10 @@ function publicEventState(array $event, ?string $participantToken = null): array
                     'draw_no' => (int) ($draw['draw_no'] ?? 0),
                     'name' => (string) ($draw['name'] ?? ''),
                     'prize_type' => (string) ($draw['prize_type'] ?? 'none'),
-                    'prize_title' => (string) ($draw['prize_title'] ?? '谢谢参与'),
+                    'prize_title' => canonicalPrizeTitle(
+                        (string) ($draw['prize_type'] ?? 'none'),
+                        (string) ($draw['prize_title'] ?? '')
+                    ),
                     'drawn_at' => (string) ($draw['drawn_at'] ?? ''),
                 ];
                 break;

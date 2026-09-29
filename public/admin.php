@@ -225,7 +225,7 @@ $winnerCount = $event !== null
                                 <tr>
                                     <td>#<?= h((int) $draw['draw_no']) ?></td>
                                     <td><?= h((string) $draw['name']) ?></td>
-                                    <td><span class="result-tag result-<?= h((string) $draw['prize_type']) ?>"><?= h((string) $draw['prize_title']) ?></span></td>
+                                    <td><span class="result-tag result-<?= h((string) $draw['prize_type']) ?>"><?= h(canonicalPrizeTitle((string) $draw['prize_type'], (string) $draw['prize_title'])) ?></span></td>
                                     <td><?= h(date('H:i:s', strtotime((string) $draw['drawn_at']))) ?></td>
                                 </tr>
                             <?php endforeach; ?>
