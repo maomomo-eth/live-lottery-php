@@ -37,6 +37,7 @@ try {
     assertTrue(verifyAdminPassword('test-password-123'), '正确密码应通过验证');
     assertTrue(!verifyAdminPassword('wrong-password'), '错误密码不应通过验证');
     assertTrue(utf8Length('中文ABC') === 5, 'UTF-8 字符长度应计算正确');
+    assertTrue(assetUrl('assets/style.css') === 'assets/style.css?v=1.0.1', '静态资源应携带统一版本号');
 
     $event = createEvent(12);
     assertTrue($event['status'] === 'open', '新场次应立即开放');

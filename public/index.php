@@ -32,7 +32,7 @@ $initialState = $event !== null ? publicEventState($event, $participantToken) : 
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#08111f">
     <title>现场幸运抽签</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="<?= h(assetUrl('assets/style.css')) ?>">
 </head>
 <body class="participant-page">
 <main class="draw-shell">
@@ -101,7 +101,7 @@ $initialState = $event !== null ? publicEventState($event, $participantToken) : 
     </section>
 </main>
 <?php if ($event !== null): ?>
-    <script src="assets/draw.js" defer></script>
+    <script src="<?= h(assetUrl('assets/draw.js')) ?>" defer></script>
 <?php endif; ?>
 </body>
 </html>

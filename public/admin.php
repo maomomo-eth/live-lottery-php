@@ -81,7 +81,7 @@ $winnerCount = $event !== null
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#08111f">
     <title>现场抽签管理后台</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="<?= h(assetUrl('assets/style.css')) ?>">
 </head>
 <body class="admin-page">
 <header class="admin-header">
@@ -238,8 +238,8 @@ $winnerCount = $event !== null
     <?php endif; ?>
 </main>
 <?php if ($loggedIn && $event !== null): ?>
-    <script src="assets/qrcodegen-v1.8.0-es5.js" defer></script>
-    <script src="assets/admin.js" defer></script>
+    <script src="<?= h(assetUrl('assets/qrcodegen-v1.8.0-es5.js')) ?>" defer></script>
+    <script src="<?= h(assetUrl('assets/admin.js')) ?>" defer></script>
 <?php endif; ?>
 </body>
 </html>

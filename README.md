@@ -76,6 +76,8 @@ chown -R www:www storage
 chmod 770 storage
 ```
 
+CSS 和 JavaScript 使用统一静态资源版本号加载。版本更新后浏览器会自动下载新文件，无需现场人员手动清理缓存。
+
 ## 其他部署方式
 
 如果不使用宝塔，也应把网站 DocumentRoot 指向项目的 `public/` 目录，并确保 `storage/` 可写：

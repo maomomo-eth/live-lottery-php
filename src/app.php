@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 const LOTTERY_FILE_PREFIX = "<?php exit; ?>\n";
 const LOTTERY_MAX_PARTICIPANTS = 500;
+const LOTTERY_ASSET_VERSION = '1.0.1';
 
 date_default_timezone_set(getenv('LOTTERY_TIMEZONE') ?: 'Asia/Shanghai');
 
@@ -642,6 +643,11 @@ function applySecurityHeaders(): void
 function h(string|int|null $value): string
 {
     return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+function assetUrl(string $path): string
+{
+    return $path . '?v=' . rawurlencode(LOTTERY_ASSET_VERSION);
 }
 
 function jsonResponse(array $data, int $status = 200): never
