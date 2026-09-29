@@ -38,9 +38,8 @@ $initialState = $event !== null ? publicEventState($event, $participantToken) : 
 <main class="draw-shell">
     <section class="hero-card">
         <div class="eyebrow">LIVE LUCKY DRAW</div>
-        <div class="brand-mark" aria-hidden="true">✦</div>
-        <h1>现场幸运抽签</h1>
-        <p class="hero-copy">好运正在派送，点击按钮揭晓你的结果</p>
+        <h1>现场幸运大转盘</h1>
+        <p class="hero-copy">转动好运，看看今天的惊喜属于谁</p>
 
         <?php if ($error !== null): ?>
             <div class="notice notice-error" role="alert"><?= h($error) ?></div>
@@ -52,6 +51,17 @@ $initialState = $event !== null ? publicEventState($event, $participantToken) : 
                 data-api-url="api.php"
                 data-initial-state="<?= h(json_encode($initialState, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)) ?>"
             >
+                <div class="wheel-stage" aria-label="抽奖转盘">
+                    <div class="wheel-pointer" aria-hidden="true"></div>
+                    <div id="prize-wheel" class="prize-wheel">
+                        <canvas id="wheel-canvas" width="640" height="640">你的浏览器不支持转盘画布。</canvas>
+                    </div>
+                    <div class="wheel-center" aria-hidden="true">
+                        <span>LUCKY</span>
+                        <strong>GO</strong>
+                    </div>
+                </div>
+
                 <div class="prize-strip" aria-label="本场奖品">
                     <div><span>1×</span> OneKey 钱包</div>
                     <div><span>2×</span> Q总赞助帽子</div>
@@ -71,8 +81,8 @@ $initialState = $event !== null ? publicEventState($event, $participantToken) : 
                         required
                     >
                     <button id="draw-button" class="primary-button draw-button" type="submit">
-                        <span class="button-default">立即开抽</span>
-                        <span class="button-loading" hidden>好运加载中…</span>
+                        <span class="button-default">开始转动</span>
+                        <span class="button-loading" hidden>转盘旋转中…</span>
                     </button>
                 </form>
 

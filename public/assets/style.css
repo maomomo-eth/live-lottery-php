@@ -112,14 +112,14 @@ label {
 .notice-success { color: #c9fff5; border-color: rgba(66,232,202,.35); background: rgba(66,232,202,.08); }
 
 /* 参与者页面 */
-.participant-page { display: grid; place-items: center; padding: 22px; }
+.participant-page { padding: 22px; }
 
-.draw-shell { position: relative; width: min(100%, 480px); }
+.draw-shell { position: relative; width: min(100%, 520px); margin: 18px auto; }
 
 .hero-card {
     position: relative;
     overflow: hidden;
-    padding: 42px 32px 30px;
+    padding: 32px 32px 30px;
     text-align: center;
     border: 1px solid rgba(255,255,255,.13);
     border-radius: 28px;
@@ -152,14 +152,84 @@ label {
     font-size: 28px;
 }
 
-.hero-card h1 { margin: 0; font-size: clamp(30px, 9vw, 42px); letter-spacing: -.04em; }
-.hero-copy { margin: 10px 0 26px; color: var(--muted); font-size: 15px; }
+.hero-card h1 { margin: 10px 0 0; font-size: clamp(29px, 8vw, 40px); letter-spacing: -.04em; }
+.hero-copy { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+
+.wheel-stage {
+    position: relative;
+    width: min(320px, 82vw);
+    aspect-ratio: 1;
+    margin: 28px auto 23px;
+    border-radius: 50%;
+    filter: drop-shadow(0 22px 32px rgba(0,0,0,.34));
+}
+
+.wheel-stage::before {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    border: 1px solid rgba(255,211,107,.16);
+    border-radius: 50%;
+    box-shadow: inset 0 0 32px rgba(255,211,107,.05), 0 0 42px rgba(66,232,202,.08);
+}
+
+.prize-wheel {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #102238;
+    will-change: transform;
+}
+
+.prize-wheel.is-spinning { filter: saturate(1.16) brightness(1.07); }
+
+.prize-wheel canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.wheel-pointer {
+    position: absolute;
+    z-index: 4;
+    top: -11px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translateX(-50%);
+    border-right: 17px solid transparent;
+    border-left: 17px solid transparent;
+    border-top: 32px solid var(--gold);
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,.45));
+}
+
+.wheel-center {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    place-content: center;
+    width: 84px;
+    height: 84px;
+    transform: translate(-50%, -50%);
+    border: 5px solid #f8d979;
+    border-radius: 50%;
+    color: #08111f;
+    background: radial-gradient(circle at 35% 30%, #fff5c7, #e7b946 72%);
+    box-shadow: 0 8px 22px rgba(0,0,0,.38), inset 0 0 0 2px rgba(255,255,255,.42);
+    pointer-events: none;
+}
+
+.wheel-center span { font-size: 8px; font-weight: 850; letter-spacing: .15em; }
+.wheel-center strong { margin-top: -1px; font-size: 23px; line-height: 1; letter-spacing: -.05em; }
 
 .prize-strip {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
 }
 
 .prize-strip div {
@@ -175,7 +245,7 @@ label {
 
 .status-pill {
     display: inline-flex;
-    margin-bottom: 22px;
+    margin-bottom: 17px;
     padding: 7px 11px;
     border: 1px solid rgba(66,232,202,.24);
     border-radius: 999px;
@@ -321,11 +391,14 @@ td { padding: 13px 12px; color: #cbd6e4; border-bottom: 1px solid rgba(255,255,2
 
 @media (max-width: 480px) {
     .participant-page { padding: 12px; }
-    .hero-card { padding: 34px 20px 24px; border-radius: 22px; }
-    .prize-strip { grid-template-columns: 1fr; }
+    .draw-shell { margin: 0 auto; }
+    .hero-card { padding: 26px 18px 24px; border-radius: 22px; }
+    .wheel-stage { width: min(284px, 80vw); margin-top: 24px; }
+    .wheel-center { width: 74px; height: 74px; }
+    .wheel-center strong { font-size: 20px; }
+    .prize-strip div { padding: 10px 6px; font-size: 12px; }
     .admin-main { padding: 14px; }
     .admin-header { align-items: flex-start; }
     .admin-header .eyebrow { display: none; }
     .event-toolbar { align-items: flex-start; }
 }
-
