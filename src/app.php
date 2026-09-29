@@ -343,7 +343,7 @@ function normalizeParticipantName(string $name): string
     if ($name === '') {
         throw new LotteryException('请输入姓名或现场昵称。');
     }
-    if (mb_strlen($name, 'UTF-8') > 30) {
+    if (utf8Length($name) > 30) {
         throw new LotteryException('姓名或昵称不能超过 30 个字符。');
     }
 
@@ -352,7 +352,45 @@ function normalizeParticipantName(string $name): string
 
 function normalizeNameForCompare(string $name): string
 {
-    return mb_strtolower(trim($name), 'UTF-8');
+    $name = trim($name);
+
+    return function_exists('mb_strtolower')
+        ? mb_strtolower($name, 'UTF-8')
+        : strtolower($name);
+}
+
+function utf8Length(string $value): int
+{
+    if (function_exists('mb_strlen')) {
+        return mb_strlen($value, 'UTF-8');
+    }
+
+    $count = preg_match_all('/./us', $value);
+
+    return $count === false ? strlen($value) : $count;
+}
+
+function logAppError(Throwable $exception): string
+{
+    try {
+        $errorId = bin2hex(random_bytes(4));
+    } catch (Throwable) {
+        $errorId = substr(hash('sha256', uniqid('', true)), 0, 8);
+    }
+
+    $line = sprintf(
+        "[%s] [%s] %s: %s in %s:%d\n",
+        date('Y-m-d H:i:s'),
+        $errorId,
+        $exception::class,
+        $exception->getMessage(),
+        $exception->getFile(),
+        $exception->getLine()
+    );
+    error_log(trim($line));
+    @file_put_contents(storageDir() . '/error.log', $line, FILE_APPEND | LOCK_EX);
+
+    return $errorId;
 }
 
 /** @return array<string, mixed> */

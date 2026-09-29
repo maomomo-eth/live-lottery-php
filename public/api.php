@@ -42,6 +42,6 @@ try {
 } catch (LotteryException $exception) {
     jsonResponse(['ok' => false, 'message' => $exception->getMessage()], $exception->httpStatus);
 } catch (Throwable $exception) {
-    error_log($exception->getMessage());
-    jsonResponse(['ok' => false, 'message' => '服务器暂时无法处理请求，请稍后重试。'], 500);
+    $errorId = logAppError($exception);
+    jsonResponse(['ok' => false, 'message' => '服务器暂时无法处理请求，请稍后重试。错误编号：' . $errorId], 500);
 }

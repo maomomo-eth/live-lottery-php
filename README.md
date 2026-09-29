@@ -13,7 +13,7 @@
 ## 环境要求
 
 - PHP 8.1 或更高版本
-- PHP 扩展：`mbstring`、`json`、`session`
+- PHP 扩展：`json`、`session`
 - `storage/` 目录可写
 - 不需要 MySQL、SQLite、Composer 或外部 CDN
 
@@ -115,3 +115,13 @@ php -S 127.0.0.1:8080 -t public
 ```
 
 然后访问 `http://127.0.0.1:8080/admin.php`。
+
+## 故障排查
+
+如果页面提示服务器错误，程序会把具体原因记录在 Web 根目录外：
+
+```bash
+tail -n 50 /www/wwwroot/cj.maomomo.com/storage/error.log
+```
+
+错误日志不会提交到 Git 仓库，也无法通过网站直接访问。

@@ -36,6 +36,7 @@ try {
     assertTrue(isInstalled(), '应完成管理员初始化');
     assertTrue(verifyAdminPassword('test-password-123'), '正确密码应通过验证');
     assertTrue(!verifyAdminPassword('wrong-password'), '错误密码不应通过验证');
+    assertTrue(utf8Length('中文ABC') === 5, 'UTF-8 字符长度应计算正确');
 
     $event = createEvent(12);
     assertTrue($event['status'] === 'open', '新场次应立即开放');

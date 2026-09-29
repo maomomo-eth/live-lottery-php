@@ -60,9 +60,9 @@ try {
     http_response_code($exception->httpStatus);
     $error = $exception->getMessage();
 } catch (Throwable $exception) {
-    error_log($exception->getMessage());
+    $errorId = logAppError($exception);
     http_response_code(500);
-    $error = '服务器发生错误，请检查 storage 目录权限。';
+    $error = '服务器发生错误，请检查 storage 目录权限。错误编号：' . $errorId;
 }
 
 $installed = isInstalled();
