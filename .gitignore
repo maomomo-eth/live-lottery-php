@@ -1,0 +1,5 @@
+/storage/*.php
+!/storage/index.php
+/.phpunit.cache/
+/tests/*.png
+/tests/preview-data/
