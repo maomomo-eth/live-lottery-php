@@ -151,7 +151,7 @@ $winnerCount = $event !== null
                     </div>
                     <div class="fixed-prizes">
                         <div><span class="prize-dot onekey-dot"></span>OneKey 钱包 <strong>×1</strong></div>
-                        <div><span class="prize-dot okx-dot"></span>OKX 帽子 <strong>×2</strong></div>
+                        <div><span class="prize-dot okx-dot"></span>Q总赞助帽子 <strong>×2</strong></div>
                     </div>
                     <button class="primary-button" type="submit">创建并允许开抽</button>
                 </form>

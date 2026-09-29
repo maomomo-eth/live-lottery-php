@@ -54,7 +54,7 @@ $initialState = $event !== null ? publicEventState($event, $participantToken) : 
             >
                 <div class="prize-strip" aria-label="本场奖品">
                     <div><span>1×</span> OneKey 钱包</div>
-                    <div><span>2×</span> OKX 帽子</div>
+                    <div><span>2×</span> Q总赞助帽子</div>
                 </div>
 
                 <div id="status-pill" class="status-pill">正在读取场次状态…</div>

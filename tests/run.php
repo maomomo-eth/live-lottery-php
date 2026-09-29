@@ -51,7 +51,7 @@ try {
     $hatCount = count(array_filter($results, static fn (array $draw): bool => $draw['prize_type'] === 'okx_hat'));
     $noneCount = count(array_filter($results, static fn (array $draw): bool => $draw['prize_type'] === 'none'));
     assertTrue($onekeyCount === 1, 'OneKey 钱包必须恰好抽出 1 个');
-    assertTrue($hatCount === 2, 'OKX 帽子必须恰好抽出 2 个');
+    assertTrue($hatCount === 2, 'Q总赞助帽子必须恰好抽出 2 个');
     assertTrue($noneCount === 9, '未中奖结果必须恰好 9 个');
 
     $finished = getEvent($event['id']);

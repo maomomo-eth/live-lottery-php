@@ -67,7 +67,7 @@
         } else if (result.prize_type === 'okx_hat') {
             resultIcon.textContent = '✦';
             resultKicker.textContent = '恭喜中奖';
-            resultTitle.textContent = 'OKX 帽子';
+            resultTitle.textContent = 'Q总赞助帽子';
             resultMessage.textContent = `${result.name}，好运被你抽中了！请向现场工作人员领取。`;
         } else {
             resultIcon.textContent = '☻';
@@ -148,4 +148,3 @@
         if (!isDrawing && !hasResult) refreshStatus();
     }, 5000);
 })();
-

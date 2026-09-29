@@ -226,8 +226,8 @@ function buildPrizePool(int $total): array
 
     $pool = [
         ['type' => 'onekey', 'title' => 'OneKey 钱包'],
-        ['type' => 'okx_hat', 'title' => 'OKX 帽子'],
-        ['type' => 'okx_hat', 'title' => 'OKX 帽子'],
+        ['type' => 'okx_hat', 'title' => 'Q总赞助帽子'],
+        ['type' => 'okx_hat', 'title' => 'Q总赞助帽子'],
     ];
 
     while (count($pool) < $total) {
